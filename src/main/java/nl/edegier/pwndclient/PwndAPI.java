@@ -23,23 +23,23 @@ public class PwndAPI {
         this.pwndClient = pwndClient;
     }
 
-    public boolean haveIBeenPwned(String password) {
-        String[] splitPassword = splitPassword(hashPassword(password));
+    public boolean haveIBeenPwned(char[] password) {
+        String[] splitPassword = splitHashedPassword(hashPassword(password));
         Map<String, Integer> hashes = this.pwndClient.getHashes(splitPassword[0]);
         Integer occurances = hashes.get(splitPassword[1]);
         LOGGER.info("Password owned " + (occurances != null ? occurances : 0) + " times!");
         return occurances != null;
     }
 
-    private String hashPassword(String password) {
-        return sha1Hex(password).toUpperCase();
+    private String hashPassword(char[] password) {
+        return sha1Hex(new String(password)).toUpperCase();
     }
 
-    private String[] splitPassword(String password) {
+    private String[] splitHashedPassword(String hashedPassword) {
         String[] result = new String[2];
-        if (!password.isEmpty()) {
-            result[0] = password.substring(0, PREFIX_LENGTH);
-            result[1] = password.substring(PREFIX_LENGTH);
+        if (!hashedPassword.isEmpty()) {
+            result[0] = hashedPassword.substring(0, PREFIX_LENGTH);
+            result[1] = hashedPassword.substring(PREFIX_LENGTH);
         }
         return result;
     }

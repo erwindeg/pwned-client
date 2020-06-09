@@ -12,6 +12,6 @@ public class PwndAPITest {
     void testHaveIBeenPwned() {
         PwndAPI pwndAPI = new PwndAPI(new MockPwndClient());
 
-        assertTrue(pwndAPI.haveIBeenPwned("password"), "should return 'true'");
+        assertTrue(pwndAPI.haveIBeenPwned(new char[]{'p','a','s','s','w','o','r','d'}), "should return 'true'");
     }
 }

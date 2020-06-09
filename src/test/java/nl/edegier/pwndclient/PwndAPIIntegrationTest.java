@@ -9,6 +9,6 @@ public class PwndAPIIntegrationTest {
     @Test
     public void testHaveIBeenPwned() {
         PwndAPI pwndAPI = new PwndAPI();
-        assertTrue(pwndAPI.haveIBeenPwned("password"), "should return 'true'");
+        assertTrue(pwndAPI.haveIBeenPwned(new char[]{'p','a','s','s','w','o','r','d'}), "should return 'true'");
     }
 }
