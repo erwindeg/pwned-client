@@ -9,7 +9,10 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     `java-library`
+    `maven`
 }
+
+group = "com.github.erwindeg"
 
 repositories {
     // Use jcenter for resolving dependencies.
